@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LoadMove — Home & Goods Transportation</title>
+<meta name="description" content="LoadMove moves furniture, appliances, boxes and goods safely from door to destination. Get an estimate and book online.">
+<style>
+:root{--bg:#07111f;--line:rgba(255,255,255,.12);--text:#f5f8fc;--muted:#9eacbd;--accent:#39d98a;--blue:#4aa3ff;--max:1120px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.5}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.wrap{width:min(var(--max),92%);margin:auto}
+nav{position:fixed;z-index:100;top:0;left:0;right:0;backdrop-filter:blur(16px);background:rgba(7,17,31,.6);border-bottom:1px solid transparent;transition:.3s}
+nav.on{border-color:var(--line);background:rgba(7,17,31,.9)}
+.ni{height:70px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-size:1.3rem;font-weight:850;letter-spacing:-.04em}.logo span{color:var(--accent)}
+.links{display:flex;gap:26px;color:#bdc8d5;font-size:.92rem}.links a:hover{color:#fff}
+.btn{display:inline-block;background:var(--accent);color:#04100a;font:inherit;font-weight:800;border:0;border-radius:999px;padding:12px 20px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(57,217,138,.22)}
+.btn.ghost{background:none;color:#dce4ed;border:1px solid var(--line);box-shadow:none}
+.btn.ghost:hover{background:rgba(255,255,255,.07)}
+
+/* ---------- scroll story ---------- */
+.story{height:850vh;position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:linear-gradient(var(--s1,#060d1a),var(--s2,#12304f) 70%)}
+.stage>*{position:absolute}
+.stars{inset:0;background:radial-gradient(1.5px 1.5px at 12% 14%,#fff,transparent),radial-gradient(1.5px 1.5px at 28% 30%,#fff,transparent),radial-gradient(1px 1px at 41% 12%,#fff,transparent),radial-gradient(1.5px 1.5px at 57% 26%,#fff,transparent),radial-gradient(1px 1px at 69% 10%,#fff,transparent),radial-gradient(1.5px 1.5px at 83% 33%,#fff,transparent),radial-gradient(1px 1px at 93% 16%,#fff,transparent),radial-gradient(1px 1px at 6% 36%,#fff,transparent)}
+.orb{z-index:1;width:calc(46*var(--u));height:calc(46*var(--u));border-radius:50%}
+.far,.mid{left:0;right:0;background-repeat:repeat-x}
+.far{z-index:2;height:calc(150*var(--u));background-size:calc(600*var(--u)) calc(150*var(--u))}
+.mid{z-index:3;height:calc(60*var(--u));background-size:calc(300*var(--u)) calc(60*var(--u))}
+.road{left:0;right:0;bottom:0;z-index:5;background:linear-gradient(#0e1b2c,#09121f 45%);border-top:2px solid #20384f}
+.lane{left:0;right:0;height:4px;z-index:5;background:repeating-linear-gradient(90deg,rgba(255,255,255,.3) 0 60px,transparent 60px 120px)}
+.bld{z-index:4;left:0;top:0;width:calc(140*var(--u));height:calc(120*var(--u));will-change:transform}
+.bld svg{width:100%;height:100%;display:block}
+.a{--wall:#1b3250;--roof:#2a4a73;--win:#ffd98a}
+.b{--wall:#17433a;--roof:#1f7a5c;--win:#27476b}.b.lit{--win:#ffd98a}
+.who{z-index:6;left:0;top:0;font-size:calc(34*var(--u));line-height:1;will-change:transform}
+.say{position:absolute;left:calc(-10*var(--u));bottom:100%;margin-bottom:6px;white-space:nowrap;font-size:max(12px,calc(11*var(--u)));font-weight:700;background:#fff;color:#102239;padding:6px 11px;border-radius:12px;opacity:0}
+.truck,.door,.bx,.done{left:0;top:0;will-change:transform}
+.truck{z-index:7;width:calc(300*var(--u));height:calc(122*var(--u))}
+.truck svg{width:100%;height:100%;display:block}
+.wh{transform-box:fill-box;transform-origin:center}
+.door{z-index:9;margin-top:calc(10*var(--u));width:calc(205*var(--u));height:calc(80*var(--u));border-radius:calc(6*var(--u));transform-origin:top;display:grid;place-items:center;overflow:hidden;color:#14263b;font-weight:900;letter-spacing:.08em;font-size:calc(21*var(--u));background:repeating-linear-gradient(90deg,transparent 0 calc(14*var(--u)),rgba(0,0,0,.08) calc(14*var(--u)) calc(15*var(--u))),linear-gradient(160deg,#eef4fa,#9fb0c0)}
+.bx{z-index:8;width:calc(30*var(--u));height:calc(26*var(--u));background:linear-gradient(90deg,transparent 42%,rgba(255,235,200,.55) 42% 58%,transparent 58%),#b5803f;border:calc(1.5*var(--u)) solid #8d5f28;border-radius:2px;opacity:0}
+.done{z-index:10;width:calc(52*var(--u));height:calc(52*var(--u));border-radius:50%;background:var(--accent);color:#04100a;display:grid;place-items:center;font-size:calc(28*var(--u));font-weight:900;box-shadow:0 0 0 calc(8*var(--u)) rgba(57,217,138,.22)}
+.hero{z-index:20;top:96px;left:max(4vw,calc((100% - var(--max))/2));max-width:min(640px,90%)}
+.hero h1{font-size:clamp(2.1rem,5.2vw,4.4rem);line-height:1;letter-spacing:-.05em}
+.hero p{color:#c3cfdc;margin:14px 0 22px;font-size:1.05rem}
+.acts{display:flex;gap:10px;flex-wrap:wrap}
+.route{z-index:20;top:84px;left:max(4vw,calc((100% - var(--max))/2));right:max(4vw,calc((100% - var(--max))/2));display:flex;align-items:center;gap:14px;font-size:.82rem;color:#b9c6d4;opacity:0}
+.rl{flex:1;height:2px;background:rgba(255,255,255,.2);position:relative}
+.rl i{position:absolute;top:-13px;left:0;font-style:normal;font-size:22px;transform:translateX(-50%) scaleX(-1)}
+.cap{z-index:20;left:4vw;bottom:44px;width:min(400px,92vw - 4vw);padding:18px 20px;border-radius:18px;background:rgba(7,17,31,.74);backdrop-filter:blur(12px);border:1px solid var(--line)}
+.cap-top{display:flex;justify-content:space-between;align-items:center;font-size:.78rem;color:var(--muted);margin-bottom:8px}
+.dots{display:flex;gap:5px}.dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)}
+.dots i.past{background:rgba(57,217,138,.5)}.dots i.on{background:var(--accent)}
+.cap h2{font-size:1.35rem;letter-spacing:-.03em}.cap p{color:#b3c0ce;font-size:.95rem;margin-top:4px}
+.cap.in h2,.cap.in p{animation:in .4s both}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}
+.hint{z-index:20;right:4vw;bottom:14px;font-size:.78rem;color:#8fa0b3}.hint b{color:var(--accent)}
+.bar{z-index:21;left:0;bottom:0;height:3px;background:var(--accent);width:0}
+
+/* ---------- content sections ---------- */
+section.s{padding:110px 0;scroll-margin-top:60px}
+.head{max-width:680px;margin-bottom:48px}
+.head h2,.t2{font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.04;letter-spacing:-.045em}
+.head p{color:var(--muted);margin-top:16px;line-height:1.75}
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);counter-reset:s}
+.steps li{counter-increment:s;padding:26px 24px 0 0;border-top:2px solid var(--line);position:relative}
+.steps li:before{content:counter(s);position:absolute;top:-13px;left:0;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#04100a;font-weight:900;font-size:.8rem;display:grid;place-items:center}
+.steps b{display:block;font-size:1.2rem;margin:10px 0 8px}
+.steps p{color:var(--muted);font-size:.95rem;line-height:1.65}
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:56px}
+.svc{display:flex;gap:18px;padding:26px 0;border-top:1px solid var(--line)}
+.svc i{font-style:normal;font-size:2rem;line-height:1.2}
+.svc h3{font-size:1.15rem}.svc p{color:var(--muted);line-height:1.65;margin-top:4px}
+.owner{display:grid;grid-template-columns:.85fr 1.15fr;gap:44px;align-items:center}
+.oc{border:1px solid var(--line);border-radius:24px;padding:34px;background:linear-gradient(145deg,#122338,#091525);min-height:340px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+.av{width:68px;height:68px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--accent));display:grid;place-items:center;color:#06121d;font-size:1.4rem;font-weight:900}
+.oc h3{font-size:1.7rem;margin-top:20px}.oc small{color:var(--muted);font-size:.95rem}
+.oc q{font-size:1.1rem;line-height:1.6;color:#d5dee8;quotes:none}
+.owner .t2{margin-bottom:18px}.owner p{color:var(--muted);line-height:1.75;margin-bottom:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.chips span{border:1px solid var(--line);border-radius:99px;padding:7px 13px;font-size:.88rem;color:#c9d4e0}
+.pr{display:grid;grid-template-columns:1.1fr .9fr;gap:28px}
+.box{border:1px solid var(--line);border-radius:24px;padding:30px;background:rgba(255,255,255,.04)}
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:14px}.full{grid-column:1/-1}
+label{display:block;font-size:.78rem;color:#8fa0b3;margin-bottom:6px}
+.in{width:100%;background:#07111f;border:1px solid var(--line);border-radius:12px;padding:13px;color:#fff;font:inherit}
+.in:focus{outline:0;border-color:rgba(57,217,138,.7)}
+textarea.in{min-height:96px;resize:vertical}
+.est{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;border-top:1px solid var(--line);margin-top:22px;padding-top:20px}
+.est small{display:block;color:#8fa0b3;font-size:.78rem}.est strong{font-size:2.4rem;letter-spacing:-.05em}
+.fact{list-style:none;margin-top:18px}
+.fact li{padding:14px 0;border-top:1px solid var(--line);color:#c9d4e0}
+.fact b{display:block;color:#fff}
+.box h3{font-size:1.5rem;letter-spacing:-.02em}.box>p{color:var(--muted);line-height:1.7;margin-top:10px}
+.book{border:1px solid var(--line);border-radius:28px;padding:clamp(24px,5vw,56px);background:radial-gradient(circle at 92% 8%,rgba(74,163,255,.18),transparent 40%),rgba(255,255,255,.04)}
+.book .head{margin-bottom:30px}
+.ba{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:22px}
+#note{min-height:1.4em;margin-top:14px;font-size:.9rem;color:#ff9a9a}
+footer{border-top:1px solid var(--line);padding:32px 0;color:#738196;font-size:.85rem;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+@media(max-width:850px){
+ .links{display:none}
+ .steps{grid-template-columns:1fr 1fr;row-gap:40px}
+ .svc-grid,.owner,.pr{grid-template-columns:1fr}
+ .route{top:78px}
+}
+@media(max-width:520px){
+ .steps,.fg{grid-template-columns:1fr}.full{grid-column:auto}
+ section.s{padding:80px 0}
+ .hero{top:88px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.cap.in h2,.cap.in p{animation:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="h" viewBox="0 0 140 120"><rect x="14" y="48" width="112" height="72" style="fill:var(--wall)"/><path d="M4 52 70 6l66 46z" style="fill:var(--roof)"/><rect x="58" y="76" width="24" height="44" rx="2" fill="#0b1626"/><rect x="26" y="66" width="22" height="20" rx="2" style="fill:var(--win)"/><rect x="92" y="66" width="22" height="20" rx="2" style="fill:var(--win)"/></symbol></svg>
+
+<nav id="nav"><div class="wrap ni">
+ <a class="logo" href="#top">LOAD<span>MOVE</span></a>
+ <div class="links"><a href="#how">How it works</a><a href="#services">Services</a><a href="#owner">Owner</a><a href="#pricing">Pricing</a></div>
+ <a class="btn" href="#booking">Book a load</a>
+</div></nav>
+
+<main id="top">
+<div class="story" id="story">
+ <div class="stage" id="stage">
+  <div class="stars" id="stars"></div>
+  <div class="orb" id="orb"></div>
+  <div class="far" id="far"></div>
+  <div class="mid" id="mid"></div>
+  <div class="road" id="road"></div>
+  <div class="lane" id="lane"></div>
+
+  <div class="bld a" id="home"><svg><use href="#h"/></svg></div>
+  <div class="who" id="p1">🧑<span class="say" id="s1">I need to move!</span></div>
+  <div class="bld b" id="dest"><svg><use href="#h"/></svg></div>
+  <div class="who" id="p2">🙋<span class="say" id="s2">Everything is here. Thanks!</span></div>
+  <div class="done" id="done" aria-hidden="true">✓</div>
+
+  <div class="bx"></div><div class="bx"></div><div class="bx"></div><div class="bx"></div><div class="bx"></div>
+
+  <div class="truck" id="truck">
+   <svg viewBox="0 0 300 122" style="overflow:visible" aria-hidden="true">
+    <defs><linearGradient id="bm" x1="0" x2="1"><stop offset="0" stop-color="#ffe9a8" stop-opacity=".7"/><stop offset="1" stop-color="#ffe9a8" stop-opacity="0"/></linearGradient></defs>
+    <polygon id="beam" points="292,78 430,54 430,106" fill="url(#bm)" opacity="0"/>
+    <rect x="0" y="10" width="205" height="82" rx="6" fill="#0c1a2d" stroke="#2b4466" stroke-width="2"/>
+    <rect x="0" y="88" width="300" height="14" rx="3" fill="#1a2b42"/>
+    <path d="M205 34H262L292 62V102H205Z" fill="#4aa3ff"/>
+    <path d="M240 44H258L276 62H240Z" fill="#0f2238" stroke="#8fcaff" stroke-width="2"/>
+    <rect x="290" y="76" width="7" height="9" rx="2" fill="#ffd98a"/>
+    <g transform="translate(50 103)"><g class="wh"><circle r="17" fill="#080d14" stroke="#2c3d52" stroke-width="5"/><path d="M-9 0H9M0-9V9" stroke="#5a738f" stroke-width="2"/></g></g>
+    <g transform="translate(165 103)"><g class="wh"><circle r="17" fill="#080d14" stroke="#2c3d52" stroke-width="5"/><path d="M-9 0H9M0-9V9" stroke="#5a738f" stroke-width="2"/></g></g>
+    <g transform="translate(250 103)"><g class="wh"><circle r="17" fill="#080d14" stroke="#2c3d52" stroke-width="5"/><path d="M-9 0H9M0-9V9" stroke="#5a738f" stroke-width="2"/></g></g>
+   </svg>
+  </div>
+  <div class="door" id="door">LOADMOVE</div>
+
+  <div class="hero" id="hero">
+   <h1>Move your load.<br>Move your life.</h1>
+   <p>Home and goods transportation, door to door.</p>
+   <div class="acts"><a class="btn" href="#booking">Book a load</a><a class="btn ghost" href="#how">Skip to how it works</a></div>
+  </div>
+  <div class="route" id="route"><span>Pickup</span><div class="rl"><i id="rt">🚚</i></div><span>Drop-off</span></div>
+  <div class="cap in" id="cap" aria-live="polite">
+   <div class="cap-top"><span id="capN">1 / 9</span><div class="dots" id="dots"></div></div>
+   <h2 id="capT"></h2><p id="capP"></p>
+  </div>
+  <div class="hint">Scroll <b id="pct">0</b>%</div>
+  <div class="bar" id="bar"></div>
+ </div>
+</div>
+
+<section class="s" id="how"><div class="wrap">
+ <div class="head"><h2>How LoadMove works</h2><p>Four steps from your door to the destination, with one person coordinating all of them.</p></div>
+ <ol class="steps">
+  <li><b>Tell us</b><p>Share the pickup, destination, load type and preferred date.</p></li>
+  <li><b>Plan</b><p>We review the load and choose the right vehicle and support.</p></li>
+  <li><b>Load</b><p>Your goods are organised and loaded carefully before we leave.</p></li>
+  <li><b>Deliver</b><p>The truck drives to the destination and the load is unloaded at the door.</p></li>
+ </ol>
+</div></section>
+
+<section class="s" id="services"><div class="wrap">
+ <div class="head"><h2>One truck. Many moving needs.</h2><p>The vehicle and crew are chosen to fit the size and type of your load.</p></div>
+ <div class="svc-grid">
+  <div class="svc"><i>🏠</i><div><h3>Home moving</h3><p>Furniture, boxes, kitchen items and household belongings between homes.</p></div></div>
+  <div class="svc"><i>🛋️</i><div><h3>Furniture and appliances</h3><p>Sofas, beds, tables, refrigerators and washing machines.</p></div></div>
+  <div class="svc"><i>📦</i><div><h3>Goods delivery</h3><p>Packages, stock and equipment for local shops and small businesses.</p></div></div>
+  <div class="svc"><i>🏗️</i><div><h3>Material transport</h3><p>Construction and project materials, within the vehicle's capacity.</p></div></div>
+  <div class="svc"><i>📍</i><div><h3>Point to point</h3><p>Give us the pickup and destination and we coordinate the journey.</p></div></div>
+  <div class="svc"><i>🤝</i><div><h3>Loading support</h3><p>Careful loading and unloading, so you have less to lift.</p></div></div>
+ </div>
+</div></section>
+
+<section class="s" id="owner"><div class="wrap owner">
+ <div class="oc">
+  <div><div class="av">AK</div><h3>Arun Kumar</h3><small>Founder and transport operator</small></div>
+  <q>My goal is simple: make transportation dependable, transparent and easy for every customer.</q>
+ </div>
+ <div>
+  <h2 class="t2">Built around the people behind every load.</h2>
+  <p>LoadMove is a local-first transport business. The owner handles your request, schedules the vehicle, coordinates loading and keeps you updated until delivery.</p>
+  <p>You get one clear place to say what needs to move, where it goes and when it must arrive.</p>
+  <div class="chips"><span>House shifting</span><span>Furniture</span><span>Appliances</span><span>Shop deliveries</span><span>Construction materials</span></div>
+ </div>
+</div></section>
+
+<section class="s" id="pricing"><div class="wrap">
+ <div class="head"><h2>Clear pricing, quoted before you book.</h2><p>Use the estimator for a starting figure. The owner confirms the final price after reviewing the route and the load.</p></div>
+ <div class="pr">
+  <div class="box">
+   <div class="fg">
+    <div><label for="pickup">Pickup</label><input id="pickup" class="in" placeholder="e.g. Coimbatore"></div>
+    <div><label for="destination">Destination</label><input id="destination" class="in" placeholder="e.g. Ooty"></div>
+    <div><label for="loadType">Load type</label><select id="loadType" class="in"></select></div>
+    <div><label for="loadSize">Load size</label><select id="loadSize" class="in"></select></div>
+   </div>
+   <div class="est"><div><small>Demo starting estimate</small><strong id="estimate">₹1,500</strong></div><button type="button" class="btn" id="toBook">Book this move</button></div>
+  </div>
+  <div class="box">
+   <h3>What affects the price</h3>
+   <ul class="fact">
+    <li><b>Distance and route</b>Longer or harder routes cost more.</li>
+    <li><b>Load size and type</b>Heavy or bulky goods need more space and handling.</li>
+    <li><b>Loading help</b>Extra crew time for stairs, fragile items or packing.</li>
+    <li><b>Waiting time</b>Delays at pickup or drop-off.</li>
+   </ul>
+  </div>
+ </div>
+</div></section>
+
+<section class="s" id="booking"><div class="wrap">
+ <div class="book">
+  <div class="head"><h2>Book your move.</h2><p>Fill in the details and send them straight to the owner. You get a confirmed price and time before anything is loaded.</p></div>
+  <div class="fg">
+   <div><label for="bName">Your name</label><input id="bName" class="in" autocomplete="name"></div>
+   <div><label for="bPhone">Phone</label><input id="bPhone" class="in" type="tel" autocomplete="tel"></div>
+   <div><label for="bFrom">Pickup</label><input id="bFrom" class="in"></div>
+   <div><label for="bTo">Destination</label><input id="bTo" class="in"></div>
+   <div><label for="bDate">Preferred date</label><input id="bDate" class="in" type="date"></div>
+   <div><label for="bType">Load type</label><select id="bType" class="in"></select></div>
+   <div><label for="bSize">Load size</label><select id="bSize" class="in"></select></div>
+   <div></div>
+   <div class="full"><label for="bNotes">Notes</label><textarea id="bNotes" class="in" placeholder="Stairs, fragile items, extra loading help…"></textarea></div>
+  </div>
+  <div class="ba">
+   <button type="button" class="btn" id="wa">Send on WhatsApp</button>
+   <button type="button" class="btn ghost" id="em">Send by email</button>
+   <a class="btn ghost" href="tel:+919999999999">Call +91 99999 99999</a>
+  </div>
+  <p id="note" role="alert"></p>
+ </div>
+</div></section>
+</main>
+
+<footer class="wrap"><span>© 2026 LoadMove Transportation</span><span>Safe loads. Clear routes. Simple moving.</span></footer>
+
+<script>
+/* ===== Edit your contact details here ===== */
+const CFG={wa:'919999999999',mail:'hello@loadmove.example'};
+
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const cl=(v,a=0,b=1)=>Math.min(b,Math.max(a,v)),lerp=(a,b,t)=>a+(b-a)*t,rng=(a,b,p)=>cl((p-a)/(b-a)),
+ ss=(a,b,p)=>{const t=rng(a,b,p);return t*t*(3-2*t)},io=t=>.5-.5*Math.cos(Math.PI*t),
+ back=t=>1+2.7*Math.pow(t-1,3)+1.7*Math.pow(t-1,2),mix=(a,b,t)=>a.map((v,i)=>Math.round(lerp(v,b[i],t))).join();
+
+/* ---- story ---- */
+const STEPS=[[0,'You need to move','A new place is waiting. The old one is full of things to carry.'],
+[.10,'Your boxes are ready','Furniture, appliances and boxes, all waiting at your door.'],
+[.24,'We load with care','Every item is placed and secured before we leave.'],
+[.47,'Engine on','Door closed, load secured. Time to roll.'],
+[.56,'On the road','One truck, one route, no handovers.'],
+[.70,'Destination in sight','Your new place comes into view.'],
+[.80,'We have arrived','Parked right at the door.'],
+[.87,'Unloading','Boxes come off the truck and go straight to the doorstep.'],
+[.96,'Delivery complete','Everything arrived safely. Here is how it works.']];
+const story=$('#story'),st=$('#stage'),truck=$('#truck'),door=$('#door'),bxs=$$('.bx'),wheels=$$('.wh'),
+ home=$('#home'),dest=$('#dest'),p1=$('#p1'),p2=$('#p2'),s1=$('#s1'),s2=$('#s2'),done=$('#done'),
+ far=$('#far'),mid=$('#mid'),road=$('#road'),lane=$('#lane'),orb=$('#orb'),stars=$('#stars'),
+ hero=$('#hero'),route=$('#route'),rt=$('#rt'),cap=$('#cap'),beam=$('#beam');
+const dots=$('#dots');dots.innerHTML=STEPS.map(()=>'<i></i>').join('');
+const svgURI=s=>`url("data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' ${s}</svg>`)}")`;
+far.style.backgroundImage=svgURI(`width='600' height='150'>`+[[0,60,50],[55,100,40],[100,70,60],[165,120,45],[215,85,55],[275,110,50],[330,65,60],[395,95,45],[445,125,55],[505,75,45],[555,90,45]].map(([x,h,w])=>`<rect x='${x}' y='${150-h}' width='${w}' height='${h}' fill='#10243b'/>`).join(''));
+mid.style.backgroundImage=svgURI(`width='300' height='60'><rect x='40' y='10' width='3' height='50' fill='#1d3652'/><circle cx='41' cy='10' r='5' fill='#ffd98a' opacity='.8'/><circle cx='190' cy='38' r='18' fill='#14304a'/><rect x='188' y='50' width='4' height='10' fill='#1d3652'/><circle cx='250' cy='44' r='13' fill='#14304a'/>`);
+
+const SX=[150,114,78,132,96],SY=[62,62,62,34,34];
+let W,H,u,gy,yb,hx,tx,camEnd,OR=[],cur=-1;
+function layout(){
+ W=st.clientWidth;H=st.clientHeight;
+ const tw=W<760?W*.56:Math.min(W*.36,440,H*.55);u=tw/300;
+ gy=H*.68;yb=gy-16*u;hx=W*.04;tx=W<760?W-tw-W*.04:W*.4;camEnd=3.2*W;
+ const zr=tx-8*u;
+ st.style.setProperty('--u',u+'px');
+ far.style.top=yb-150*u+'px';mid.style.top=yb-60*u+'px';road.style.top=yb+'px';lane.style.top=gy+(H-gy)*.5+'px';
+ OR=[0,1,2,3,4].map(i=>i<3?{x:zr-32*u*(i+1),y:gy-24*u}:{x:zr-32*u*(i-2)+16*u,y:gy-51*u});
+ frame();
+}
+const at=(el,x,y,s=1)=>el.style.transform=`translate(${x}px,${y}px) scale(${s})`;
+function frame(){
+ const r=story.getBoundingClientRect(),p=cl(-r.top/(r.height-H));
+ const t=rng(.5,.82,p),e=io(t),cam=e*camEnd,sp=Math.sin(Math.PI*t),ty=gy-120*u;
+ /* truck */
+ const bob=Math.sin(cam/(7*u))*.8*u*sp,shake=Math.sin(p*1500)*.6*u*ss(.45,.49,p)*(1-ss(.52,.6,p));
+ const tr=`translate(${tx+shake}px,${ty+bob}px)`;
+ truck.style.transform=tr;
+ const d=p<.65?ss(.44,.49,p):1-ss(.86,.89,p);
+ door.style.transform=`${tr} scaleY(${Math.max(d,.001)})`;door.style.visibility=d<.01?'hidden':'visible';
+ const deg=cam/(17*u)*57.3;wheels.forEach(w=>w.style.transform=`rotate(${deg}deg)`);
+ beam.setAttribute('opacity',(ss(.47,.5,p)*(1-ss(.84,.86,p))*.6).toFixed(2));
+ /* world */
+ at(home,hx-cam,yb-120*u);at(p1,hx+96*u-cam,gy-50*u);
+ at(dest,hx+camEnd-cam,yb-120*u);at(p2,hx+camEnd+96*u-cam,gy-50*u);
+ s1.style.opacity=1-ss(.08,.13,p);s2.style.opacity=ss(.97,.99,p);
+ dest.classList.toggle('lit',p>.95);
+ at(done,hx+camEnd-cam+44*u,yb-190*u,p>.95?back(rng(.95,.985,p)):0);
+ far.style.backgroundPositionX=-cam*.12+'px';mid.style.backgroundPositionX=-cam*.4+'px';lane.style.backgroundPositionX=-cam+'px';
+ /* sky */
+ const k=ss(.45,.9,p);
+ st.style.setProperty('--s1',`rgb(${mix([6,13,26],[18,58,92],k)})`);st.style.setProperty('--s2',`rgb(${mix([18,48,79],[238,166,106],k)})`);
+ stars.style.opacity=.85*(1-k);
+ const oc=mix([223,233,245],[255,207,106],k);
+ orb.style.background=`rgb(${oc})`;orb.style.boxShadow=`0 0 ${40*u}px rgba(${oc},.5)`;
+ at(orb,W*(.86-.35*p),H*(.34-.2*ss(.3,1,p)));
+ /* boxes */
+ bxs.forEach((b,i)=>{
+  const A=.10+.02*i,L=.24+.032*i,U=.89+.012*i,O=OR[i],T={x:tx+SX[i]*u,y:ty+SY[i]*u};
+  let x=O.x,y=O.y,s=1,o=1;
+  if(p<A)o=0;
+  else if(p<A+.05){const q=io(rng(A,A+.05,p));y-=(1-q)*45*u;s=q}
+  else if(p>=L&&p<L+.055){const q=io(rng(L,L+.055,p));x=lerp(O.x,T.x,q);y=lerp(O.y,T.y,q)-Math.sin(Math.PI*q)*60*u}
+  else if(p>=L+.055&&p<U){x=T.x;y=T.y;if(d>=.995)o=0}
+  else if(p>=U&&p<U+.04){const q=io(rng(U,U+.04,p));x=lerp(T.x,O.x,q);y=lerp(T.y,O.y,q)-Math.sin(Math.PI*q)*60*u}
+  at(b,x,y,s);b.style.opacity=o;
+ });
+ /* overlays */
+ const h=1-ss(.03,.09,p);
+ hero.style.opacity=h;hero.style.transform=`translateY(${-24*(1-h)}px)`;hero.style.pointerEvents=h>.5?'auto':'none';
+ route.style.opacity=ss(.1,.16,p);rt.style.left=e*100+'%';
+ let idx=0;STEPS.forEach((s,i)=>{if(p>=s[0])idx=i});
+ if(idx!==cur){cur=idx;$('#capT').textContent=STEPS[idx][1];$('#capP').textContent=STEPS[idx][2];$('#capN').textContent=`${idx+1} / ${STEPS.length}`;
+  [...dots.children].forEach((c,i)=>c.className=i<idx?'past':i===idx?'on':'');
+  cap.classList.remove('in');void cap.offsetWidth;cap.classList.add('in')}
+ $('#pct').textContent=Math.round(p*100);$('#bar').style.width=p*100+'%';
+}
+let tick=0;
+addEventListener('scroll',()=>{$('#nav').classList.toggle('on',scrollY>30);if(!tick){tick=1;requestAnimationFrame(()=>{tick=0;frame()})}},{passive:true});
+addEventListener('resize',layout);
+
+/* ---- estimator + booking ---- */
+const TYPES=[['Boxes / small goods',1],['Furniture',1.25],['Home shifting',1.45],['Heavy goods',1.6]],SIZES=[['Small',1],['Medium',1.25],['Large',1.55]];
+const fill=(id,a)=>$('#'+id).innerHTML=a.map(([n,v])=>`<option value="${v}">${n}</option>`).join('');
+fill('loadType',TYPES);fill('bType',TYPES);fill('loadSize',SIZES);fill('bSize',SIZES);
+function estimate(){
+ const t=+$('#loadType').value,s=+$('#loadSize').value,r=$('#pickup').value.trim()&&$('#destination').value.trim()?350:0;
+ $('#estimate').textContent='₹'+(Math.round((1500*t*s+r)/50)*50).toLocaleString('en-IN');
+}
+['pickup','destination','loadType','loadSize'].forEach(id=>$('#'+id).addEventListener('input',estimate));
+$('#toBook').onclick=()=>{
+ [['pickup','bFrom'],['destination','bTo'],['loadType','bType'],['loadSize','bSize']].forEach(([a,b])=>$('#'+b).value=$('#'+a).value);
+ $('#booking').scrollIntoView({behavior:'smooth'});setTimeout(()=>$('#bName').focus({preventScroll:true}),600);
+};
+function request(){
+ const g=id=>$('#'+id).value.trim(),sel=id=>{const s=$('#'+id);return s.options[s.selectedIndex].text};
+ const miss=['bName','bPhone','bFrom','bTo'].find(id=>!g(id));
+ if(miss){$('#'+miss).focus();$('#note').textContent='Add your name, phone, pickup and destination so we can plan the move.';return null}
+ $('#note').textContent='';
+ return['Hello LoadMove, I would like to book a move.','Name: '+g('bName'),'Phone: '+g('bPhone'),'Pickup: '+g('bFrom'),'Destination: '+g('bTo'),'Date: '+(g('bDate')||'Flexible'),'Load: '+sel('bType')+', '+sel('bSize').toLowerCase(),'Notes: '+(g('bNotes')||'None')].join('\n');
+}
+$('#wa').onclick=()=>{const m=request();if(m)open('https://wa.me/'+CFG.wa+'?text='+encodeURIComponent(m),'_blank')};
+$('#em').onclick=()=>{const m=request();if(m)location.href='mailto:'+CFG.mail+'?subject='+encodeURIComponent('Move request')+'&body='+encodeURIComponent(m)};
+
+layout();
+</script>
+</body>
+</html>
